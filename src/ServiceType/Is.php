@@ -19,7 +19,7 @@ class Is extends AbstractSoapClientBase
      * @param \Pggns\MidocoApi\MidocoSystem\StructType\MidocoCredentialsType $midocoCredentials
      * @param string $namespace
      * @param bool $mustUnderstand
-     * @param string $actor
+     * @param string|null $actor
      * @return \Pggns\MidocoApi\MidocoSystem\ServiceType\Is
      */
     public function setSoapHeaderMidocoCredentials(\Pggns\MidocoApi\MidocoSystem\StructType\MidocoCredentialsType $midocoCredentials, string $namespace = 'http://www.midoco.de/system', bool $mustUnderstand = false, ?string $actor = null): self
@@ -54,9 +54,36 @@ class Is extends AbstractSoapClientBase
         }
     }
     /**
+     * Method to call the operation originally named isInitializedFor2FaAuth
+     * Meta information extracted from the WSDL
+     * - SOAPHeaderNames: MidocoCredentials
+     * - SOAPHeaderNamespaces: http://www.midoco.de/system
+     * - SOAPHeaderTypes: \Pggns\MidocoApi\MidocoSystem\StructType\MidocoCredentialsType
+     * - SOAPHeaders: required
+     * @uses AbstractSoapClientBase::getSoapClient()
+     * @uses AbstractSoapClientBase::setResult()
+     * @uses AbstractSoapClientBase::saveLastError()
+     * @param \Pggns\MidocoApi\MidocoSystem\StructType\IsInitializedFor2FaRequest $paramIsInitializedFor2FaRequest
+     * @return \Pggns\MidocoApi\MidocoSystem\StructType\IsInitializedFor2FaResponse|bool
+     */
+    public function isInitializedFor2FaAuth(\Pggns\MidocoApi\MidocoSystem\StructType\IsInitializedFor2FaRequest $paramIsInitializedFor2FaRequest)
+    {
+        try {
+            $this->setResult($resultIsInitializedFor2FaAuth = $this->getSoapClient()->__soapCall('isInitializedFor2FaAuth', [
+                $paramIsInitializedFor2FaRequest,
+            ], [], [], $this->outputHeaders));
+        
+            return $resultIsInitializedFor2FaAuth;
+        } catch (SoapFault $soapFault) {
+            $this->saveLastError(__METHOD__, $soapFault);
+        
+            return false;
+        }
+    }
+    /**
      * Returns the result
      * @see AbstractSoapClientBase::getResult()
-     * @return \Pggns\MidocoApi\MidocoSystem\StructType\IsAppModuleAllowedForOrgunitResponse
+     * @return \Pggns\MidocoApi\MidocoSystem\StructType\IsAppModuleAllowedForOrgunitResponse|\Pggns\MidocoApi\MidocoSystem\StructType\IsInitializedFor2FaResponse
      */
     public function getResult()
     {

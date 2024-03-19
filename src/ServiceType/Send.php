@@ -19,7 +19,7 @@ class Send extends AbstractSoapClientBase
      * @param \Pggns\MidocoApi\MidocoSystem\StructType\MidocoCredentialsType $midocoCredentials
      * @param string $namespace
      * @param bool $mustUnderstand
-     * @param string $actor
+     * @param string|null $actor
      * @return \Pggns\MidocoApi\MidocoSystem\ServiceType\Send
      */
     public function setSoapHeaderMidocoCredentials(\Pggns\MidocoApi\MidocoSystem\StructType\MidocoCredentialsType $midocoCredentials, string $namespace = 'http://www.midoco.de/system', bool $mustUnderstand = false, ?string $actor = null): self
@@ -54,9 +54,36 @@ class Send extends AbstractSoapClientBase
         }
     }
     /**
+     * Method to call the operation originally named send2FaAuthCode
+     * Meta information extracted from the WSDL
+     * - SOAPHeaderNames: MidocoCredentials
+     * - SOAPHeaderNamespaces: http://www.midoco.de/system
+     * - SOAPHeaderTypes: \Pggns\MidocoApi\MidocoSystem\StructType\MidocoCredentialsType
+     * - SOAPHeaders: required
+     * @uses AbstractSoapClientBase::getSoapClient()
+     * @uses AbstractSoapClientBase::setResult()
+     * @uses AbstractSoapClientBase::saveLastError()
+     * @param \Pggns\MidocoApi\MidocoSystem\StructType\Send2FaCodeRequest $paramSend2FaCodeRequest
+     * @return \Pggns\MidocoApi\MidocoSystem\StructType\Send2FaCodeResponse|bool
+     */
+    public function send2FaAuthCode(\Pggns\MidocoApi\MidocoSystem\StructType\Send2FaCodeRequest $paramSend2FaCodeRequest)
+    {
+        try {
+            $this->setResult($resultSend2FaAuthCode = $this->getSoapClient()->__soapCall('send2FaAuthCode', [
+                $paramSend2FaCodeRequest,
+            ], [], [], $this->outputHeaders));
+        
+            return $resultSend2FaAuthCode;
+        } catch (SoapFault $soapFault) {
+            $this->saveLastError(__METHOD__, $soapFault);
+        
+            return false;
+        }
+    }
+    /**
      * Returns the result
      * @see AbstractSoapClientBase::getResult()
-     * @return \Pggns\MidocoApi\MidocoSystem\StructType\SendEmailResponse
+     * @return \Pggns\MidocoApi\MidocoSystem\StructType\Send2FaCodeResponse|\Pggns\MidocoApi\MidocoSystem\StructType\SendEmailResponse
      */
     public function getResult()
     {
